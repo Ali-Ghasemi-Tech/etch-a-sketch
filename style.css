@@ -16,6 +16,6 @@
     text-align: center;
 }
 
-.grid-item:hover{
+.hovered{
     background-color: gray;
 }
