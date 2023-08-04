@@ -27,10 +27,20 @@ function makeGrid(rows, cols){
 }
 
 function draw(userInput){
+    
     let isMouseDown = false;
 
     for(let i=0; i < userInput*userInput; i++){
+        let fill = 0.2;
         let cell = document.querySelector(`.number-${i+1}`);
+
+        document.getElementById('clear').addEventListener('click' , () =>{
+            for(let j=0; j < userInput*userInput; j++){
+                let cell = document.querySelector(`.number-${j+1}`);
+                cell.style.background = 'white';
+                cell.style.opacity = "0.2"
+            }       
+         });
 
         cell.addEventListener('mouseup' , () => {
             isMouseDown = false;
@@ -42,7 +52,9 @@ function draw(userInput){
 
         cell.addEventListener('mouseenter', () => {
             if(isMouseDown){
+                fill += 0.2;
                 cell.style.background = "gray";
+                cell.style.opacity = `${fill}`
 
             }
         });
