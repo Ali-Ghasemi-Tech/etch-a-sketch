@@ -2,15 +2,10 @@ let userInput ;
 let size = document.getElementById('size-button');
 const container = document.getElementById('container');
 
+makeGrid(userInput =16 , userInput =16);
+    draw(userInput = 16)
 
-size.addEventListener('click', () => {
-    userInput = prompt('enter the grid size you want(for example 16 would give you a 16x16 grid): ');
-    makeGrid(userInput , userInput);
-    draw(userInput)
-});
-
-
-function makeGrid(rows, cols){
+function makeGrid(rows , cols ){
     container.innerHTML = ``;
     console.log(typeof(rows,cols))
     if(isNaN(Number(userInput)) || userInput>100){
@@ -26,21 +21,30 @@ function makeGrid(rows, cols){
     }
 }
 
-function draw(userInput){
-    
+document.getElementById('clear').addEventListener('click' , () =>{
+    for(let i=0; i < userInput*userInput; i++){
+        let cell = document.querySelector(`.number-${i+1}`);
+        cell.style.background = 'white';
+        cell.style.opacity = "0.2"
+    }       
+ });
+
+ size.addEventListener('click', () => {
+    userInput = prompt('enter the grid size you want(for example 16 would give you a 16x16 grid): ');
+    makeGrid(userInput , userInput);
+    draw(userInput )
+});
+
+
+
+
+function draw(userInput , color = "gray"){
     let isMouseDown = false;
+    let isRainbowClicked = false;
 
     for(let i=0; i < userInput*userInput; i++){
         let fill = 0.2;
         let cell = document.querySelector(`.number-${i+1}`);
-
-        document.getElementById('clear').addEventListener('click' , () =>{
-            for(let j=0; j < userInput*userInput; j++){
-                let cell = document.querySelector(`.number-${j+1}`);
-                cell.style.background = 'white';
-                cell.style.opacity = "0.2"
-            }       
-         });
 
         cell.addEventListener('mouseup' , () => {
             isMouseDown = false;
@@ -51,9 +55,17 @@ function draw(userInput){
         });
 
         cell.addEventListener('mouseenter', () => {
-            if(isMouseDown){
+            
+        document.getElementById('rainbow').addEventListener('click' , () =>{
+            isRainbowClicked = true;
+        })
+            if(isMouseDown  ){
+                if(isRainbowClicked){
+                    color = randomColor();
+                    fill = 1;
+                }
                 fill += 0.2;
-                cell.style.background = "gray";
+                cell.style.backgroundColor = `${color}`;
                 cell.style.opacity = `${fill}`
 
             }
@@ -61,8 +73,37 @@ function draw(userInput){
 
         
     }
+
 }
 
+function randomColor(){
+    let randomRed = Math.random();
+    let randomGreen = Math.random();
+    let randomBlue = Math.random();
+    let red = 0;
+    let blue = 0;
+    let green = 0;
+    
+        if(randomRed > 0.255){
+            red += Math.round(randomRed * 100);
+        } else{
+            red += Math.round(randomRed * 1000);
+        }
+        if(randomGreen > 0.255){
+            green += Math.round(randomGreen * 100);
+        } else{
+            green += Math.round(randomGreen * 100);
+        }
+        if(randomBlue > 0.255){
+            blue += Math.round(randomBlue * 100);
+        } else{
+            blue += Math.round(randomBlue * 100);
+        }
+        return (`rgb(${red} , ${green} , ${blue})`);
+
+}
+
+console.log(randomColor())
 
 
 
