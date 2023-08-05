@@ -38,9 +38,10 @@ document.getElementById('clear').addEventListener('click' , () =>{
 
 
 
-function draw(userInput , color = "gray"){
+function draw(userInput , color){
     let isMouseDown = false;
     let isRainbowClicked = false;
+    let isStatic = true;
 
     for(let i=0; i < userInput*userInput; i++){
         let fill = 0.2;
@@ -54,13 +55,19 @@ function draw(userInput , color = "gray"){
             isMouseDown = true;
         });
 
-        cell.addEventListener('mouseenter', () => {
-            
         document.getElementById('rainbow').addEventListener('click' , () =>{
             isRainbowClicked = true;
+            isStatic = false;
+        });
+        
+        document.getElementById('color-button').addEventListener('click' , () => {
+            isStatic = true;
         })
-            if(isMouseDown  ){
-                if(isRainbowClicked){
+
+        cell.addEventListener('mouseenter', () => {
+            if(isMouseDown){
+                color = inputValue;
+                if(isRainbowClicked && !isStatic){
                     color = randomColor();
                     fill = 1;
                 }
@@ -102,8 +109,11 @@ function randomColor(){
         return (`rgb(${red} , ${green} , ${blue})`);
 
 }
-
-console.log(randomColor())
-
+let inputValue;
+document.getElementById('color').addEventListener('input' , (event) =>{
+    inputValue = event.target.value;
+    return inputValue;
+});
+console.log(inputValue)
 
 
