@@ -5,16 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../src/input.css">
 </head>
-<body ondragstart="return false" , ondragend="return false" >
-    <input type="color" id="color">
-    <button id="color-button" >static color</button>
-    <button id="rainbow">rainbow</button>
-    <button id="clear">clear</button>
-    <button id="size-button">select size</button>
-    <div id="container">
-
+<body ondragstart="return false" , ondragend="return false" class="flex flex-row justify-center items-center pt-28" >
+    
+    <div class="flex flex-col justify-center items-center w-28 h-[450px] mr-10">
+        <input type="color" id="color" class="w-[50px] h-[50px] mb-[15px]"> 
+        <button id="color-button" class="btn-primary" >static color</button>
+        <button id="rainbow" class="btn-primary">rainbow</button>
+        <button id="eraser" class="btn-primary">eraser</button>
+        <button id="clear" class="btn-primary">clear</button>
+        <button id="size-button" class="btn-primary">select size</button> 
     </div>
+
+    <div class="flex flex-col items-center justify-center ">
+        
+        <span class="font-sans text-4xl font-bold text-gray-600">etch a sketch</span>
+
+        <div id="container">
+    
+        </div>
+    </div>
+    
 </body>
 <script type="module" src="../logic/index.js"></script>
 </html>

@@ -9,6 +9,9 @@ let userInput ;
 let size = document.getElementById('size-button');
 let inputValue;
 const container = document.getElementById('container');
+const rainbowButton = document.getElementById('rainbow');
+const colorButton = document.getElementById('color-button');
+const eraserButton = document.getElementById('eraser');
 
 makeGrid(userInput =16 , userInput =16);
     draw(userInput = 16)
@@ -32,3 +35,4 @@ document.getElementById('clear').addEventListener('click' , () =>{
     makeGrid(userInput , userInput);
     draw(userInput )
 });
+

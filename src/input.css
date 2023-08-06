@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn-primary{
+        @apply border rounded-md border-black w-[100px] h-[50px] mb-[15px];
+    }
+}
